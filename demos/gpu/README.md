@@ -6,9 +6,8 @@ GPU access on CoreWeave requires the **SUNK scheduler** (Slurm on Kubernetes).
 
 | Demo | Description |
 |------|-------------|
-| `gpu_sunk_kubetorch.py` | **Recommended** - Kubetorch with SUNK via `service_template` |
-| `gpu_sunk_scheduler.py` | Kubetorch attempt (may not work without service_template) |
-| `gpu_sunk_raw.yaml` | Raw K8s manifest for direct testing |
+| `test_sunk_cpu.py` | CPU-only SUNK test (verify setup works) |
+| `gpu_sunk_kubetorch.py` | GPU via SUNK scheduler |
 
 ## How SUNK Integration Works
 
@@ -53,13 +52,11 @@ compute = kt.Compute(
 ## Running
 
 ```bash
-# Kubetorch with SUNK (recommended)
-python demos/gpu/gpu_sunk_kubetorch.py
+# Test SUNK with CPU first (verifies setup)
+python demos/gpu/test_sunk_cpu.py
 
-# Raw K8s manifest (for debugging)
-kubectl apply -f demos/gpu/gpu_sunk_raw.yaml
-kubectl logs -f gpu-sunk-test -n tenant-slurm
-kubectl delete pod gpu-sunk-test -n tenant-slurm
+# GPU via SUNK (when GPUs are available)
+python demos/gpu/gpu_sunk_kubetorch.py
 ```
 
 ## If GPUs Are Busy
