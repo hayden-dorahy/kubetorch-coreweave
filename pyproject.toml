@@ -1,0 +1,22 @@
+[project]
+name = "coreweave-poc"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11,<3.12"
+dependencies = [
+    "kubetorch[client]>=0.2.9",
+    "torch",
+    "physicsx.pxs[opora]==0.29.0-dev.11",
+]
+
+[tool.uv]
+prerelease = "allow"
+index-strategy = "unsafe-best-match"
+
+[tool.uv.sources]
+"physicsx.pxs" = { index = "px-pypi-release" }
+
+[[tool.uv.index]]
+name = "px-pypi-release"
+url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/simple"

@@ -1,0 +1,25 @@
+# Helmfile for CoreWeave Kubetorch setup
+# Usage:
+#   brew install helmfile
+#   export KUBECONFIG=~/.kube/coreweave-usw9b
+#   helmfile sync
+
+repositories: []  # Using OCI registry directly
+
+releases:
+  - name: kubetorch
+    namespace: kubetorch
+    createNamespace: true
+    chart: oci://ghcr.io/run-house/charts/kubetorch
+    version: 0.2.9
+    values:
+      - nginx:
+          # CoreWeave uses coredns, not kube-dns
+          resolver: "coredns.kube-system.svc.cluster.local"
+      # Configure deployment namespaces (tenant-slurm for PVC access)
+      - kubetorchConfig:
+          deployment_namespaces:
+            - "default"
+            - "kubetorch"
+            - "tenant-slurm"
+
