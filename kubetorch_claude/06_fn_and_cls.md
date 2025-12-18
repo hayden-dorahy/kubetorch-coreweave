@@ -1,6 +1,7 @@
 # Functions and Classes (kt.fn, kt.cls)
 
 > **Official Docs:** [Core Python Primitives](https://www.run.house/kubetorch/concepts/core-primitives)
+> **Source:** `kubetorch.resources.callables.fn.fn.Fn`, `kubetorch.resources.callables.cls.cls.Cls`
 
 ## Overview
 

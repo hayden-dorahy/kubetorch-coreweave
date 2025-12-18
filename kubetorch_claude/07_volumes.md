@@ -1,6 +1,7 @@
 # Volumes
 
 > **Official Docs:** [Supporting Primitives](https://www.run.house/kubetorch/concepts/supporting-primitives)
+> **Source:** `kubetorch.resources.volumes.volume.Volume`
 
 Kubetorch `Volume` provides persistent storage for services via Kubernetes PersistentVolumeClaims (PVCs).
 

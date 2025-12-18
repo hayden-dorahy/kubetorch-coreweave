@@ -1,6 +1,7 @@
 # Distributed Training
 
 > **Official Docs:** [Distributed Training](https://www.run.house/kubetorch/concepts/distributed)
+> **Source:** `kubetorch.distributed`, `kubetorch.servers.http.distributed_utils`
 
 Kubetorch makes multi-node distributed training simple. It supports **PyTorch DDP** (Distributed Data Parallel) and **Ray** clusters.
 

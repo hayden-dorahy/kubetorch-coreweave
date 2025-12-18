@@ -52,3 +52,19 @@ This documentation covers **Kubetorch v0.2.9**.
 - [GitHub](https://github.com/run-house/kubetorch)
 - [PyPI](https://pypi.org/project/kubetorch/)
 
+## Agent Usage Note
+
+For AI agents parsing this documentation:
+
+1. **Context Loading**: Start with `01_overview.md` and `03_quickstart.md` to understand the core mental model (Python -> Cluster) and basic syntax.
+2. **Topic Mapping**:
+   - **Resource Specs (CPU/GPU/RAM)**: `04_compute.md`
+   - **Container/Dependencies**: `05_image.md`
+   - **Storage/Data**: `07_volumes.md`
+   - **Credentials/Auth**: `08_secrets.md`
+   - **Multi-Node Training**: `09_distributed.md`
+   - **Serving/Inference**: `10_autoscaling.md`
+   - **CLI Tools**: `11_cli.md`
+3. **Code Tracing**: Each file header contains a `Source: ...` field pointing to the Python implementation. Use this to verify behavior in the codebase (e.g., `kubetorch.resources.compute.compute.Compute`).
+4. **Verification**: Use the `Official Docs` link at the top of each file to cross-reference against the live website if generated code fails or APIs seem outdated.
+5. **Pattern Matching**: Use `18_examples.md` to find "complete" patterns that combine multiple primitives (Compute + Volume + Secret) rather than trying to compose them from scratch.

@@ -1,6 +1,7 @@
 # Secrets
 
 > **Official Docs:** [Supporting Primitives](https://www.run.house/kubetorch/concepts/supporting-primitives)
+> **Source:** `kubetorch.resources.secrets.secret.Secret`
 
 Kubetorch `Secret` manages sensitive data like API keys, credentials, and tokens. It wraps Kubernetes Secrets and provides convenient providers for common services.
 

@@ -1,6 +1,7 @@
 # Logging, Debugging & Metrics
 
 > **Official Docs:** [Monitoring & Observability](https://www.run.house/kubetorch/concepts/monitoring)
+> **Source:** `kubetorch.globals.LoggingConfig`, `kubetorch.servers.http.pdb_websocket`, `kubetorch.servers.http.server_metrics`
 
 ## Logging
 

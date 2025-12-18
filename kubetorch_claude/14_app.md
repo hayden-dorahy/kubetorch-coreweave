@@ -1,6 +1,7 @@
 # App & CLI Execution
 
 > **Official Docs:** [App API Reference](https://www.run.house/kubetorch/api-reference/python/app)
+> **Source:** `kubetorch.resources.compute.app.App`
 
 `kt.App` wraps a command-line script for remote execution via `kt run`.
 

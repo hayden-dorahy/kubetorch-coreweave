@@ -1,6 +1,7 @@
 # CLI Reference
 
 > **Official Docs:** [CLI API Reference](https://www.run.house/kubetorch/api-reference/cli)
+> **Source:** `kubetorch.cli`
 
 Kubetorch includes a powerful CLI tool `kt` (provided by `kubetorch[client]`).
 

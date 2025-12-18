@@ -1,6 +1,7 @@
 # Autoscaling
 
 > **Official Docs:** [Autoscaling & Distribution](https://www.run.house/kubetorch/concepts/distributed)
+> **Source:** `kubetorch.serving.knative_service_manager.KnativeServiceManager`, `kubetorch.serving.autoscaling`
 
 Kubetorch supports autoscaling via **Knative Serving**. This enables:
 - Scale-to-zero when idle

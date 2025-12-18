@@ -1,6 +1,7 @@
 # Compute Class Reference
 
 > **Official Docs:** [Compute API Reference](https://www.run.house/kubetorch/api-reference/python/compute)
+> **Source:** `kubetorch.resources.compute.compute.Compute`
 
 The `kt.Compute` class is the core resource specification for Kubetorch services. It defines CPU, memory, GPU, volumes, secrets, and all Kubernetes-level configuration.
 

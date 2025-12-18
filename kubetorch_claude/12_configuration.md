@@ -1,5 +1,7 @@
 # Configuration
 
+> **Source:** `kubetorch.config.KubetorchConfig`, `kubetorch.globals`
+
 Kubetorch uses a hierarchical configuration system:
 1. Method Arguments (e.g. `kt.Compute(namespace=...)`)
 2. Environment Variables

@@ -1,6 +1,7 @@
 # Image Class Reference
 
 > **Official Docs:** [Image API Reference](https://www.run.house/kubetorch/api-reference/python/image)
+> **Source:** `kubetorch.resources.images.image.Image`
 
 The `kt.Image` class defines container image configuration and setup steps. It uses a builder pattern for chaining configuration.
 

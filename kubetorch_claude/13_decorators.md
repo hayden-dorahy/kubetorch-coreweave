@@ -1,5 +1,7 @@
 # Decorators
 
+> **Source:** `kubetorch.resources.compute.decorators`
+
 Kubetorch provides decorators to define infrastructure alongside code. This enables the "Infrastructure as Code" pattern for Python.
 
 ## `@kt.compute`
