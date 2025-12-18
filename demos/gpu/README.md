@@ -19,13 +19,15 @@ compute = kt.Compute(
     gpus="1",
     gpu_type="B200",
     namespace="tenant-slurm",
+    launch_timeout=60,  # Shorter timeout for testing
     
-    # Inject schedulerName into pod spec
+    # Inject schedulerName AND terminationGracePeriodSeconds
     service_template={
         "spec": {
             "template": {
                 "spec": {
-                    "schedulerName": "tenant-slurm-slurm-scheduler"
+                    "schedulerName": "tenant-slurm-slurm-scheduler",
+                    "terminationGracePeriodSeconds": 5,  # Required by SUNK!
                 }
             }
         }
@@ -37,12 +39,16 @@ compute = kt.Compute(
         "sunk.coreweave.com/exclusive": "user",
     },
     
-    # Allow scheduling on GPU nodes
+    # Allow scheduling on GPU nodes (for GPU workloads)
     tolerations=[
         {"key": "nvidia.com/gpu", "operator": "Exists", "effect": "NoSchedule"}
     ],
 )
 ```
+
+> ⚠️ **Critical:** SUNK requires `terminationGracePeriodSeconds` to be less than
+> Slurm's KillWait timeout minus 5 seconds. Without this, pods will fail with:
+> `termination grace period must be less than Slurm KillWait - 5s`
 
 ## Running
 

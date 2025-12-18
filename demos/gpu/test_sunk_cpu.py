@@ -13,11 +13,13 @@ if __name__ == "__main__":
         cpus="0.5",
         memory="1Gi",
         namespace="tenant-slurm",
+        launch_timeout=30,  # 30 seconds max
         service_template={
             "spec": {
                 "template": {
                     "spec": {
-                        "schedulerName": "tenant-slurm-slurm-scheduler"
+                        "schedulerName": "tenant-slurm-slurm-scheduler",
+                        "terminationGracePeriodSeconds": 5,  # SUNK requires < KillWait - 5s
                     }
                 }
             }

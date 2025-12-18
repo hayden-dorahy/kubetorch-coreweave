@@ -30,7 +30,8 @@ if __name__ == "__main__":
         "spec": {
             "template": {
                 "spec": {
-                    "schedulerName": SUNK_SCHEDULER
+                    "schedulerName": SUNK_SCHEDULER,
+                    "terminationGracePeriodSeconds": 5,  # SUNK requires < KillWait - 5s
                 }
             }
         }
@@ -58,6 +59,7 @@ if __name__ == "__main__":
         gpus="1",
         gpu_type="B200",  # Specify GPU type
         namespace="tenant-slurm",  # SUNK namespace
+        launch_timeout=60,  # Shorter timeout for testing
         annotations=sunk_annotations,
         tolerations=gpu_tolerations,
         service_template=service_template,
