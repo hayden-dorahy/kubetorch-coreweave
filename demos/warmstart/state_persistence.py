@@ -36,7 +36,7 @@ if __name__ == "__main__":
     import sys
 
     compute = kt.Compute(cpus="0.1", labels={"demo": "state-persistence"})
-    remote_fn = kt.fn(cache_operation, name="state_demo").to(compute)
+    remote_fn = kt.fn(cache_operation, name="warmstart_state").to(compute)  # separate - needs isolated state
     
     # Parse command line args
     if len(sys.argv) < 2:

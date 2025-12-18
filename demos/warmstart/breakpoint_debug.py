@@ -35,7 +35,7 @@ if __name__ == "__main__":
     print()
 
     compute = kt.Compute(cpus="0.1", labels={"demo": "breakpoint"})
-    remote_fn = kt.fn(debug_example, name="debug_demo").to(compute)
+    remote_fn = kt.fn(debug_example, name="warmstart").to(compute)
     
     result = remote_fn()
     print(f"\nResult: {result}")

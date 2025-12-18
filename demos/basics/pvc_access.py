@@ -42,7 +42,7 @@ if __name__ == "__main__":
     )
 
     print("Deploying to tenant-slurm with slurm-data PVC mounted...")
-    remote_fn = kt.fn(list_data).to(compute)
+    remote_fn = kt.fn(list_data, name="basics_pvc").to(compute)  # separate - different namespace/volumes
     result = remote_fn()
     print(result)
 

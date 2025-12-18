@@ -12,6 +12,6 @@ if __name__ == "__main__":
         labels={"user": "hayden", "team": "research"}
     )
 
-    remote = kt.fn(hello_with_labels, name="label_test").to(compute)
+    remote = kt.fn(hello_with_labels, name="basics").to(compute)
     print(remote())
 

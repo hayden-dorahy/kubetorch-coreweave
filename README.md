@@ -8,12 +8,16 @@ A collection of demos showcasing [Kubetorch](https://www.run.house/kubetorch) fe
 # Activate environment
 source .venv/bin/activate
 
+# First time: set your username (required!)
+kt config set username <your-name>
+
 # Run a basic demo
 python demos/basics/hello_world.py
 
 # Clean up when done
 kt list              # See running services
-kt delete <name>     # Delete specific service
+kt teardown <name>   # Delete specific service
+kt teardown --all    # Delete all YOUR services
 ```
 
 ## Repository Structure
@@ -109,11 +113,10 @@ Script runs → Pod created → Script ends → Pod stays running
 ### Cleanup
 Pods run indefinitely unless deleted:
 ```bash
-kt list              # List all services
-kt delete <name>     # Delete specific service
+kt list                      # List all services
+kt teardown <name>           # Delete specific service
+kt teardown --prefix <pfx>   # Delete all matching prefix
 ```
-
-⚠️ Avoid `kt delete --all` in shared namespaces - it kills everyone's deployments.
 
 ## Documentation
 

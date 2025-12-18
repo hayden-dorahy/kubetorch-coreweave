@@ -15,4 +15,3 @@ python demos/basics/hello_world.py
 python demos/basics/pvc_access.py
 python demos/basics/user_labels.py
 ```
-

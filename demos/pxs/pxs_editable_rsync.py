@@ -94,6 +94,6 @@ if __name__ == "__main__":
 
     compute = kt.Compute(cpus="0.5", memory="4Gi", image=image)
     
-    remote_fn = kt.fn(run_opora_mlp, name="pxs_editable").to(compute)
+    remote_fn = kt.fn(run_opora_mlp, name="pxs_rsync").to(compute)  # separate - different image setup
     result = remote_fn()
     print(result)

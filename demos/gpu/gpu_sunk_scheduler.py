@@ -47,7 +47,7 @@ if __name__ == "__main__":
     print(f"Using scheduler: {SUNK_SCHEDULER}")
     print(f"Requesting 1 GPU in namespace tenant-slurm")
     
-    remote_fn = kt.fn(check_gpu, name="gpu_sunk_test").to(compute)
+    remote_fn = kt.fn(check_gpu, name="gpu").to(compute)
     result = remote_fn()
     print(result)
 

@@ -2,6 +2,8 @@
 
 All demos are CPU-only unless marked otherwise.
 
+See [main README](../README.md) for quick start and setup instructions.
+
 ## Categories
 
 | Folder | Description |
@@ -11,26 +13,12 @@ All demos are CPU-only unless marked otherwise.
 | [`pxs/`](pxs/) | PhysicsX library integration |
 | [`gpu/`](gpu/) | GPU demos (WIP - requires SUNK scheduler) |
 
-## Quick Start
+## Running Demos
 
 ```bash
-# From repo root
-source .venv/bin/activate
-
-# Run any demo
 python demos/basics/hello_world.py
 python demos/warmstart/timing_demo.py
 python demos/pxs/pxs_artifactory.py
-
-# View running services
-kt list
-
-# Clean up
-kt delete <name>
 ```
 
-## See Also
-
-- [Main README](../README.md) - Full demo list and cluster info
-- [Kubetorch Setup](../admin/docs/kubetorch_setup.md) - Installation guide
-
+Each subfolder has its own README with details.

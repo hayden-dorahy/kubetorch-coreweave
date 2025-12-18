@@ -33,7 +33,31 @@ uv init                      # if starting fresh
 uv add "kubetorch[client]"   # quotes required
 ```
 
-## 3. Deploy Kubetorch to Cluster
+## 3. Configure Your Username
+
+> ⚠️ **Why set a username?**
+> 
+> Without a username, your services are anonymous and `kt teardown --all` won't work.
+> With a username, your services get prefixed (e.g., `hayden-hello_world`) so you can:
+> - Identify your pods in `kt list` and `kubectl get pods`
+> - Safely run `kt teardown --all` without killing other people's work
+> - Filter resources: `kubectl get pods -l user=hayden`
+
+```bash
+kt config set username <your-name>
+```
+
+Stored in `~/.kt/config.yaml`. Can also set via env var:
+```bash
+export KT_USERNAME=<your-name>
+```
+
+Verify with:
+```bash
+kt config list
+```
+
+## 4. Deploy Kubetorch to Cluster
 
 ### Option A: Helmfile (recommended)
 
@@ -217,17 +241,15 @@ Must delete deployment when changing:
 ### How to Delete (safe methods)
 
 ```python
-# In Python
-kt.delete("my_function_name")
-
-# Or force fresh deployment
+# Force fresh deployment (deletes existing first)
 remote_fn = kt.fn(my_function).to(compute, reuse=False)
 ```
 
 ```bash
 # CLI
 kt list              # List running services
-kt delete NAME       # Delete a service
+kt teardown NAME           # Delete a service
+kt teardown --prefix PFX   # Delete all with prefix
 ```
 
 Avoid raw `kubectl delete` - Kubetorch commands handle both Deployment and Service together.

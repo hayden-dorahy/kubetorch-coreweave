@@ -1,41 +1,70 @@
 # GPU Demos
 
-⚠️ **GPU access requires SUNK scheduler** - these demos may not work until
-the cluster is configured for Kubernetes GPU scheduling via SUNK.
+GPU access on CoreWeave requires the **SUNK scheduler** (Slurm on Kubernetes).
+
+## Demos
 
 | Demo | Description |
 |------|-------------|
-| `gpu_sunk_scheduler.py` | Kubetorch with SUNK scheduler (WIP) |
-| `gpu_sunk_raw.yaml` | Raw K8s manifest for SUNK GPU scheduling |
+| `gpu_sunk_kubetorch.py` | **Recommended** - Kubetorch with SUNK via `service_template` |
+| `gpu_sunk_scheduler.py` | Kubetorch attempt (may not work without service_template) |
+| `gpu_sunk_raw.yaml` | Raw K8s manifest for direct testing |
 
-## Current Status
+## How SUNK Integration Works
 
-GPUs on this cluster are reserved by SUNK (Slurm). To access them from
-Kubernetes pods, you need to use the SUNK scheduler.
+Kubetorch's `Compute` class supports custom pod spec via `service_template`:
 
-See: [CoreWeave SUNK Docs](https://docs.coreweave.com/docs/products/sunk/run_workloads/schedule-kubernetes-pods)
+```python
+compute = kt.Compute(
+    gpus="1",
+    gpu_type="B200",
+    namespace="tenant-slurm",
+    
+    # Inject schedulerName into pod spec
+    service_template={
+        "spec": {
+            "template": {
+                "spec": {
+                    "schedulerName": "tenant-slurm-slurm-scheduler"
+                }
+            }
+        }
+    },
+    
+    # SUNK annotations
+    annotations={
+        "sunk.coreweave.com/account": "root",
+        "sunk.coreweave.com/exclusive": "user",
+    },
+    
+    # Allow scheduling on GPU nodes
+    tolerations=[
+        {"key": "nvidia.com/gpu", "operator": "Exists", "effect": "NoSchedule"}
+    ],
+)
+```
 
-## Running Raw K8s Test
+## Running
 
 ```bash
-# Apply the raw manifest (uses SUNK scheduler)
+# Kubetorch with SUNK (recommended)
+python demos/gpu/gpu_sunk_kubetorch.py
+
+# Raw K8s manifest (for debugging)
 kubectl apply -f demos/gpu/gpu_sunk_raw.yaml
-
-# Watch pod status
-kubectl get pod gpu-sunk-test -n tenant-slurm -w
-
-# Check logs
-kubectl logs gpu-sunk-test -n tenant-slurm
-
-# Clean up
+kubectl logs -f gpu-sunk-test -n tenant-slurm
 kubectl delete pod gpu-sunk-test -n tenant-slurm
 ```
 
-## Kubetorch Limitation
+## If GPUs Are Busy
 
-Kubetorch currently doesn't support setting `schedulerName` directly.
-Options:
-1. Use raw K8s manifests for GPU workloads
-2. Use Slurm directly for GPU jobs
-3. Request feature from Kubetorch maintainers
+If all GPUs are allocated, pods will stay `Pending` until resources free up.
+Check status with:
+```bash
+kubectl get pods -n tenant-slurm
+squeue  # via SSH to login node
+```
 
+## Reference
+
+- [CoreWeave SUNK Docs](https://docs.coreweave.com/docs/products/sunk/run_workloads/schedule-kubernetes-pods)

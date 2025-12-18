@@ -85,8 +85,8 @@ if __name__ == "__main__":
 
     compute = kt.Compute(cpus="0.5", memory="4Gi", image=image)
     
-    # Run the Opora MLP test
-    remote_fn = kt.fn(run_opora_mlp).to(compute)
+    # Run the Opora MLP test (separate pod - different image from editable demos)
+    remote_fn = kt.fn(run_opora_mlp, name="pxs_artifactory").to(compute)
     result = remote_fn()
     print(result)
 

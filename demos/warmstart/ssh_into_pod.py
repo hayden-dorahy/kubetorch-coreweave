@@ -15,7 +15,7 @@ if __name__ == "__main__":
     print("Creating/connecting to pod...")
     
     compute = kt.Compute(cpus="0.1", labels={"demo": "ssh"})
-    remote_fn = kt.fn(setup_pod, name="ssh_demo").to(compute)
+    remote_fn = kt.fn(setup_pod, name="warmstart").to(compute)
     
     # Ensure pod is ready
     result = remote_fn()

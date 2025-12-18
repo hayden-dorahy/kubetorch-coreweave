@@ -19,7 +19,7 @@ if __name__ == "__main__":
     import time
 
     compute = kt.Compute(cpus="0.1", labels={"demo": "hot-reload"})
-    remote_fn = kt.fn(get_message, name="hotreload_demo").to(compute)
+    remote_fn = kt.fn(get_message, name="warmstart").to(compute)
     
     print("=" * 50)
     start = time.time()
