@@ -38,7 +38,7 @@ if __name__ == "__main__":
     import kubetorch as kt
 
     compute = kt.Compute(
-        cpus="0.1", launch_timeout=60, inactivity_ttl="10m", labels={"demo": "state-persistence"}
+        cpus="0.1", launch_timeout=60, labels={"demo": "state-persistence"}
     )
     remote_fn = kt.fn(cache_operation, name="warmstart_state").to(
         compute

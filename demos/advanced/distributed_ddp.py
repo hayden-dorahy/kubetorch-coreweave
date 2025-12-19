@@ -61,7 +61,6 @@ if __name__ == "__main__":
         memory="1Gi",
         image=image,
         launch_timeout=120,  # Longer for torch install
-        inactivity_ttl="10m",
     )
 
     # Enable distributed mode

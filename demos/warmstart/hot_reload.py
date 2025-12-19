@@ -21,7 +21,7 @@ if __name__ == "__main__":
     import kubetorch as kt
 
     compute = kt.Compute(
-        cpus="0.1", launch_timeout=60, inactivity_ttl="10m", labels={"demo": "hot-reload"}
+        cpus="0.1", launch_timeout=60, labels={"demo": "hot-reload"}
     )
     remote_fn = kt.fn(get_message, name="warmstart_hotreload").to(compute)
 

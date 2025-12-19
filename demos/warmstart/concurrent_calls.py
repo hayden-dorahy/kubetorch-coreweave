@@ -22,7 +22,7 @@ if __name__ == "__main__":
 
     print("Setting up Kubetorch...")
     compute = kt.Compute(
-        cpus="0.5", launch_timeout=60, inactivity_ttl="10m", labels={"demo": "concurrent"}
+        cpus="0.5", launch_timeout=60, labels={"demo": "concurrent"}
     )
     remote_fn = kt.fn(slow_computation, name="warmstart_concurrent").to(compute)
 

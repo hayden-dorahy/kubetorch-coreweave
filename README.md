@@ -120,10 +120,9 @@ Script runs → Pod created → Script ends → Pod stays running
                                               ↓
                             Next run → Reuses warm pod (fast!)
 ```
-Pods auto-terminate after 10 minutes of inactivity (configured via `inactivity_ttl="10m"`).
 
 ### Cleanup
-Pods run indefinitely unless deleted:
+Pods run indefinitely unless manually deleted or using `.autoscale()` (see `demos/advanced/autoscale_demo.py`):
 ```bash
 kt list                      # List all services
 kt teardown <name>           # Delete specific service

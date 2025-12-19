@@ -34,7 +34,6 @@ if __name__ == "__main__":
         disk_size="5Gi",  # Ephemeral storage request
         shared_memory_limit="1Gi",  # /dev/shm size (important for PyTorch loaders)
         launch_timeout=60,
-        inactivity_ttl="10m",
     )
 
     print("Deploying with custom resources (1GB /dev/shm)...")

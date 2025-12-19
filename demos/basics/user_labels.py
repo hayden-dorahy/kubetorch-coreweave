@@ -11,7 +11,6 @@ if __name__ == "__main__":
     compute = kt.Compute(
         cpus="0.1",
         launch_timeout=60,
-        inactivity_ttl="10m",
         labels={"user": "hayden", "team": "research"},
     )
 

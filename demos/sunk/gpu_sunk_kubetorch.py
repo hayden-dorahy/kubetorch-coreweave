@@ -61,7 +61,6 @@ if __name__ == "__main__":
         gpu_type="B200",  # Specify GPU type
         namespace="tenant-slurm",  # SUNK namespace
         launch_timeout=60,  # Shorter timeout for testing
-        inactivity_ttl="10m",
         annotations=sunk_annotations,
         tolerations=gpu_tolerations,
         service_template=service_template,

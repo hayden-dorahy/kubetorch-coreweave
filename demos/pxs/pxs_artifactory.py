@@ -74,7 +74,6 @@ if __name__ == "__main__":
         memory="4Gi",
         image=image,
         launch_timeout=600,  # PXS install takes ~5min
-        inactivity_ttl="10m",
     )
 
     # Run the Opora MLP test (separate pod - different image from editable demos)

@@ -68,7 +68,10 @@ Since the process persists, global state accumulates.
 
 ### 3. Resource Holding
 Warm pods hold resources (GPUs/CPUs) even when idle.
-**Fix:** Configure `inactivity_ttl` to auto-terminate idle pods.
+**Fix:** Use `.autoscale(min_scale=0)` for scale-to-zero, or manually `kt teardown`.
+
+> **Note:** `inactivity_ttl` does NOT auto-terminate pods. It requires cluster-side OTEL/Prometheus 
+> configuration that is not set up. Use `.autoscale()` instead (see `demos/advanced/autoscale_demo.py`).
 
 ## Configuration
 
@@ -76,6 +79,5 @@ All demos in this folder use:
 ```python
 kt.Compute(
     launch_timeout=60,      # Give up if pod takes >60s to start
-    inactivity_ttl="10m"    # Kill pod after 10 minutes of inactivity
 )
 ```
