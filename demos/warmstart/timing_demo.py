@@ -1,10 +1,13 @@
 """Demo warm start - second call is much faster"""
+
 import time
+
 import kubetorch as kt
 
 
 def get_time():
     import datetime
+
     return f"Called at {datetime.datetime.now()}"
 
 
@@ -28,5 +31,4 @@ if __name__ == "__main__":
     print(f"  Result: {result2}")
     print(f"  Time: {warm_time:.2f}s\n")
 
-    print(f"Speedup: {cold_time/warm_time:.1f}x faster!")
-
+    print(f"Speedup: {cold_time / warm_time:.1f}x faster!")

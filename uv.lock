@@ -2,7 +2,8 @@ version = 1
 revision = 3
 requires-python = "==3.11.*"
 resolution-markers = [
-    "sys_platform != 'win32'",
+    "sys_platform != 'darwin' and sys_platform != 'win32'",
+    "sys_platform == 'darwin'",
     "sys_platform == 'win32'",
 ]
 
@@ -261,23 +262,6 @@ wheels = [
 ]
 
 [[package]]
-name = "coreweave-poc"
-version = "0.1.0"
-source = { virtual = "." }
-dependencies = [
-    { name = "kubetorch", extra = ["client"] },
-    { name = "physicsx-pxs" },
-    { name = "torch" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "kubetorch", extras = ["client"], specifier = ">=0.2.9" },
-    { name = "physicsx-pxs", specifier = "==0.29.0.dev11", index = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/simple" },
-    { name = "torch" },
-]
-
-[[package]]
 name = "cycler"
 version = "0.12.1"
 source = { registry = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/simple" }
@@ -335,12 +319,32 @@ wheels = [
 ]
 
 [[package]]
+name = "dotenv"
+version = "0.9.9"
+source = { registry = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/simple" }
+dependencies = [
+    { name = "python-dotenv" },
+]
+wheels = [
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/b2/b7/545d2c10c1fc15e48653c91efde329a790f2eecfbbf2bd16003b5db2bab0/dotenv-0.9.9-py2.py3-none-any.whl", hash = "sha256:29cf74a087b31dafdb5a446b6d7e11cbce8ed2741540e2339c69fbef92c94ce9" },
+]
+
+[[package]]
 name = "durationpy"
 version = "0.10"
 source = { registry = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/simple" }
 sdist = { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/9d/a4/e44218c2b394e31a6dd0d6b095c4e1f32d0be54c2a4b250032d717647bab/durationpy-0.10.tar.gz", hash = "sha256:1fa6893409a6e739c9c72334fc65cca1f355dbdd93405d30f726deb5bde42fba" }
 wheels = [
     { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/b0/0d/9feae160378a3553fa9a339b0e9c1a048e147a4127210e286ef18b730f03/durationpy-0.10-py3-none-any.whl", hash = "sha256:3b41e1b601234296b4fb368338fdcd3e13e0b4fb5b67345948f4f2bf9868b286" },
+]
+
+[[package]]
+name = "einops"
+version = "0.8.1"
+source = { registry = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/simple" }
+sdist = { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/e5/81/df4fbe24dff8ba3934af99044188e20a98ed441ad17a274539b74e82e126/einops-0.8.1.tar.gz", hash = "sha256:de5d960a7a761225532e0f1959e5315ebeafc0cd43394732f103ca44b9837e84" }
+wheels = [
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/87/62/9773de14fe6c45c23649e98b83231fffd7b9892b6cf863251dc2afa73643/einops-0.8.1-py3-none-any.whl", hash = "sha256:919387eb55330f5757c6bea9165c5ff5cfe63a642682ea788a6d472576d81737" },
 ]
 
 [[package]]
@@ -374,6 +378,25 @@ source = { registry = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-re
 sdist = { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/a7/23/ce7a1126827cedeb958fc043d61745754464eb56c5937c35bbf2b8e26f34/filelock-3.20.1.tar.gz", hash = "sha256:b8360948b351b80f420878d8516519a2204b07aefcdcfd24912a5d33127f188c" }
 wheels = [
     { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/e3/7f/a1a97644e39e7316d850784c642093c99df1290a460df4ede27659056834/filelock-3.20.1-py3-none-any.whl", hash = "sha256:15d9e9a67306188a44baa72f569d2bfd803076269365fdea0934385da4dc361a" },
+]
+
+[[package]]
+name = "finufft"
+version = "2.4.1"
+source = { registry = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/simple" }
+dependencies = [
+    { name = "numpy" },
+    { name = "packaging" },
+]
+sdist = { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/55/e9/df71d92be6d1d52f21a7ba7e4580851e36551105f1ddeed6bf86d6c35e2c/finufft-2.4.1.tar.gz", hash = "sha256:a0658f07622b3bf82597bf1feade80d72f4a2b236e0e3b4af47759cd729edbb2" }
+wheels = [
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/e5/44/43bb827b21131ce833fe45eeaf9c4197b5293115e8f7065af57a3096f644/finufft-2.4.1-py3-none-macosx_13_0_x86_64.whl", hash = "sha256:7ca51343c8bdc00058083e3a9e8912bb2534a0610226671a5d3237257c0d791f" },
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/39/34/117f6ce592d2b1258d7465f8458358053558bacdb421c1fa573e60ee95a0/finufft-2.4.1-py3-none-macosx_14_0_arm64.whl", hash = "sha256:b1b5e969129d5d56ad7143ad059c216631034e925dba5a32df3bc192972c48cb" },
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/67/cf/0c52a2681a59b1e7d2afb577afaea7ec296ea01c1cb6b9cf82beeebdb15d/finufft-2.4.1-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:9a7d5305bdefd9e70a6c13f408835d32142d36ab1a0b3f8bcb2c66d2ee7e743c" },
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/82/11/53cd265a957cacea5c1bc6ef0512a67da5531c4837d3411fdf4a0200f53b/finufft-2.4.1-py3-none-manylinux_2_28_x86_64.whl", hash = "sha256:4152858e795e9709a301406c8aa01d428fe8dfc2476fae87a5a9ef35abb5a205" },
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/1a/0b/9b2172e6e509ff32f32fa3ca762641d81c690c9889857b62c055091d2a73/finufft-2.4.1-py3-none-musllinux_1_1_x86_64.whl", hash = "sha256:8196db644592826ad1d925b212f5fb9fdcfdf073e218912af8db4528f307a916" },
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/c9/59/0b8f6d52329222a1f4834b6b2b31aed8e7cf9f5b2394c0b756455dc1dc18/finufft-2.4.1-py3-none-musllinux_1_2_x86_64.whl", hash = "sha256:fd8f81a236c3ca1aab543a9d9e38dfda42a97a657fce4557838fe8a0b077af1e" },
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/2f/52/562eb52ed5edc4ff9a5cb46871058a8a4a64438f54b88a00d776e179f6b5/finufft-2.4.1-py3-none-win_amd64.whl", hash = "sha256:859c95441cb431294826719ef1caae79a366fcc1b675d956b72c1bcbc8eb461d" },
 ]
 
 [[package]]
@@ -774,6 +797,27 @@ client = [
 ]
 
 [[package]]
+name = "kubetorch-demo"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "dotenv" },
+    { name = "kubetorch", extra = ["client"] },
+    { name = "physicsx-pxs", extra = ["opora"] },
+    { name = "ruff" },
+    { name = "torch" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "dotenv", specifier = ">=0.9.9" },
+    { name = "kubetorch", extras = ["client"], specifier = ">=0.2.9" },
+    { name = "physicsx-pxs", extras = ["opora"], specifier = "==0.29.0.dev11", index = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/simple" },
+    { name = "ruff", specifier = ">=0.14.10" },
+    { name = "torch" },
+]
+
+[[package]]
 name = "lightning-utilities"
 version = "0.15.2"
 source = { registry = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/simple" }
@@ -1080,7 +1124,7 @@ name = "nvidia-cudnn-cu12"
 version = "9.5.1.17"
 source = { registry = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/simple" }
 dependencies = [
-    { name = "nvidia-cublas-cu12" },
+    { name = "nvidia-cublas-cu12", marker = "sys_platform != 'darwin' and sys_platform != 'win32'" },
 ]
 wheels = [
     { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/2a/78/4535c9c7f859a64781e43c969a3a7e84c54634e319a996d43ef32ce46f83/nvidia_cudnn_cu12-9.5.1.17-py3-none-manylinux_2_28_x86_64.whl", hash = "sha256:30ac3869f6db17d170e0e556dd6cc5eee02647abc31ca856634d5a40f82c15b2" },
@@ -1091,7 +1135,7 @@ name = "nvidia-cufft-cu12"
 version = "11.3.0.4"
 source = { registry = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/simple" }
 dependencies = [
-    { name = "nvidia-nvjitlink-cu12" },
+    { name = "nvidia-nvjitlink-cu12", marker = "sys_platform != 'darwin' and sys_platform != 'win32'" },
 ]
 wheels = [
     { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/8f/16/73727675941ab8e6ffd86ca3a4b7b47065edcca7a997920b831f8147c99d/nvidia_cufft_cu12-11.3.0.4-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", hash = "sha256:ccba62eb9cef5559abd5e0d54ceed2d9934030f51163df018532142a8ec533e5" },
@@ -1120,9 +1164,9 @@ name = "nvidia-cusolver-cu12"
 version = "11.7.1.2"
 source = { registry = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/simple" }
 dependencies = [
-    { name = "nvidia-cublas-cu12" },
-    { name = "nvidia-cusparse-cu12" },
-    { name = "nvidia-nvjitlink-cu12" },
+    { name = "nvidia-cublas-cu12", marker = "sys_platform != 'darwin' and sys_platform != 'win32'" },
+    { name = "nvidia-cusparse-cu12", marker = "sys_platform != 'darwin' and sys_platform != 'win32'" },
+    { name = "nvidia-nvjitlink-cu12", marker = "sys_platform != 'darwin' and sys_platform != 'win32'" },
 ]
 wheels = [
     { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/f0/6e/c2cf12c9ff8b872e92b4a5740701e51ff17689c4d726fca91875b07f655d/nvidia_cusolver_cu12-11.7.1.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", hash = "sha256:e9e49843a7707e42022babb9bcfa33c29857a93b88020c4e4434656a655b698c" },
@@ -1134,7 +1178,7 @@ name = "nvidia-cusparse-cu12"
 version = "12.5.4.2"
 source = { registry = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/simple" }
 dependencies = [
-    { name = "nvidia-nvjitlink-cu12" },
+    { name = "nvidia-nvjitlink-cu12", marker = "sys_platform != 'darwin' and sys_platform != 'win32'" },
 ]
 wheels = [
     { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/06/1e/b8b7c2f4099a37b96af5c9bb158632ea9e5d9d27d7391d7eb8fc45236674/nvidia_cusparse_cu12-12.5.4.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", hash = "sha256:7556d9eca156e18184b94947ade0fba5bb47d69cec46bf8660fd2c71a4b48b73" },
@@ -1250,6 +1294,38 @@ wheels = [
 ]
 
 [[package]]
+name = "opt-einsum"
+version = "3.4.0"
+source = { registry = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/simple" }
+sdist = { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/8c/b9/2ac072041e899a52f20cf9510850ff58295003aa75525e58343591b0cbfb/opt_einsum-3.4.0.tar.gz", hash = "sha256:96ca72f1b886d148241348783498194c577fa30a8faac108586b14f1ba4473ac" }
+wheels = [
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/23/cd/066e86230ae37ed0be70aae89aabf03ca8d9f39c8aea0dec8029455b5540/opt_einsum-3.4.0-py3-none-any.whl", hash = "sha256:69bb92469f86a1565195ece4ac0323943e83477171b91d24c35afe028a90d7cd" },
+]
+
+[[package]]
+name = "orjson"
+version = "3.11.5"
+source = { registry = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/simple" }
+sdist = { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/04/b8/333fdb27840f3bf04022d21b654a35f58e15407183aeb16f3b41aa053446/orjson-3.11.5.tar.gz", hash = "sha256:82393ab47b4fe44ffd0a7659fa9cfaacc717eb617c93cde83795f14af5c2e9d5" }
+wheels = [
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/fd/68/6b3659daec3a81aed5ab47700adb1a577c76a5452d35b91c88efee89987f/orjson-3.11.5-cp311-cp311-macosx_10_15_x86_64.macosx_11_0_arm64.macosx_10_15_universal2.whl", hash = "sha256:9c8494625ad60a923af6b2b0bd74107146efe9b55099e20d7740d995f338fcd8" },
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/e9/00/92db122261425f61803ccf0830699ea5567439d966cbc35856fe711bfe6b/orjson-3.11.5-cp311-cp311-macosx_15_0_arm64.whl", hash = "sha256:7bb2ce0b82bc9fd1168a513ddae7a857994b780b2945a8c51db4ab1c4b751ebc" },
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/94/4f/ffdcb18356518809d944e1e1f77589845c278a1ebbb5a8297dfefcc4b4cb/orjson-3.11.5-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:67394d3becd50b954c4ecd24ac90b5051ee7c903d167459f93e77fc6f5b4c968" },
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/97/c6/0a8caff96f4503f4f7dd44e40e90f4d14acf80d3b7a97cb88747bb712d3e/orjson-3.11.5-cp311-cp311-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:298d2451f375e5f17b897794bcc3e7b821c0f32b4788b9bcae47ada24d7f3cf7" },
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/4d/63/43d4dc9bd9954bff7052f700fdb501067f6fb134a003ddcea2a0bb3854ed/orjson-3.11.5-cp311-cp311-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:aa5e4244063db8e1d87e0f54c3f7522f14b2dc937e65d5241ef0076a096409fd" },
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/87/6f/27e2e76d110919cb7fcb72b26166ee676480a701bcf8fc53ac5d0edce32f/orjson-3.11.5-cp311-cp311-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:1db2088b490761976c1b2e956d5d4e6409f3732e9d79cfa69f876c5248d1baf9" },
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/d4/f8/5966153a5f1be49b5fbb8ca619a529fde7bc71aa0a376f2bb83fed248bcd/orjson-3.11.5-cp311-cp311-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:c2ed66358f32c24e10ceea518e16eb3549e34f33a9d51f99ce23b0251776a1ef" },
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/a7/34/8acb12ff0299385c8bbcbb19fbe40030f23f15a6de57a9c587ebf71483fb/orjson-3.11.5-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:c2021afda46c1ed64d74b555065dbd4c2558d510d8cec5ea6a53001b3e5e82a9" },
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/ee/27/910421ea6e34a527f73d8f4ee7bdffa48357ff79c7b8d6eb6f7b82dd1176/orjson-3.11.5-cp311-cp311-musllinux_1_2_aarch64.whl", hash = "sha256:b42ffbed9128e547a1647a3e50bc88ab28ae9daa61713962e0d3dd35e820c125" },
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/87/a3/4b703edd1a05555d4bb1753d6ce44e1a05b7a6d7c164d5b332c795c63d70/orjson-3.11.5-cp311-cp311-musllinux_1_2_armv7l.whl", hash = "sha256:8d5f16195bb671a5dd3d1dbea758918bada8f6cc27de72bd64adfbd748770814" },
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/1b/36/034177f11d7eeea16d3d2c42a1883b0373978e08bc9dad387f5074c786d8/orjson-3.11.5-cp311-cp311-musllinux_1_2_i686.whl", hash = "sha256:c0e5d9f7a0227df2927d343a6e3859bebf9208b427c79bd31949abcc2fa32fa5" },
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/44/2f/ea8b24ee046a50a7d141c0227c4496b1180b215e728e3b640684f0ea448d/orjson-3.11.5-cp311-cp311-musllinux_1_2_x86_64.whl", hash = "sha256:23d04c4543e78f724c4dfe656b3791b5f98e4c9253e13b2636f1af5d90e4a880" },
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/8a/12/cc440554bf8200eb23348a5744a575a342497b65261cd65ef3b28332510a/orjson-3.11.5-cp311-cp311-win32.whl", hash = "sha256:c404603df4865f8e0afe981aa3c4b62b406e6d06049564d58934860b62b7f91d" },
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/a3/83/e0c5aa06ba73a6760134b169f11fb970caa1525fa4461f94d76e692299d9/orjson-3.11.5-cp311-cp311-win_amd64.whl", hash = "sha256:9645ef655735a74da4990c24ffbd6894828fbfa117bc97c1edd98c282ecb52e1" },
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/cb/35/5b77eaebc60d735e832c5b1a20b155667645d123f09d471db0a78280fb49/orjson-3.11.5-cp311-cp311-win_arm64.whl", hash = "sha256:1cbf2735722623fcdee8e712cbaaab9e372bbcb0c7924ad711b261c2eccf4a5c" },
+]
+
+[[package]]
 name = "packaging"
 version = "24.2"
 source = { registry = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/simple" }
@@ -1289,6 +1365,17 @@ wheels = [
 ]
 
 [[package]]
+name = "physicsx-cufinufft"
+version = "2.3.3"
+source = { registry = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/simple" }
+dependencies = [
+    { name = "numpy" },
+]
+wheels = [
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/cufinufft/dist/physicsx.cufinufft-2.3.3-py3-none-any.whl", hash = "sha256:f980daeda8cfe3e3627e297a6159c8f99b62de06c816b845680c73edd32b18a6" },
+]
+
+[[package]]
 name = "physicsx-pxs"
 version = "0.29.0.dev11"
 source = { registry = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/simple" }
@@ -1315,6 +1402,19 @@ dependencies = [
 ]
 wheels = [
     { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/libraries/pxs/dist/physicsx_pxs-0.29.0.dev11-py3-none-any.whl", hash = "sha256:a35dd88c5958e002245ab187fd246561c509e797f15f457c2fe426acc0893541" },
+]
+
+[package.optional-dependencies]
+opora = [
+    { name = "einops" },
+    { name = "opt-einsum" },
+    { name = "physicsx-cufinufft" },
+    { name = "pytorch-finufft" },
+    { name = "tensordict" },
+    { name = "tensorly" },
+    { name = "tensorly-torch" },
+    { name = "torch-scatter", version = "2.1.3.dev1", source = { registry = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/simple" }, marker = "sys_platform == 'darwin'" },
+    { name = "torch-scatter", version = "2.1.3.dev1+pt27cu128", source = { registry = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/simple" }, marker = "sys_platform != 'darwin'" },
 ]
 
 [[package]]
@@ -1553,6 +1653,30 @@ wheels = [
 ]
 
 [[package]]
+name = "python-dotenv"
+version = "1.2.1"
+source = { registry = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/simple" }
+sdist = { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/f0/26/19cadc79a718c5edbec86fd4919a6b6d3f681039a2f6d66d14be94e75fb9/python_dotenv-1.2.1.tar.gz", hash = "sha256:42667e897e16ab0d66954af0e60a9caa94f0fd4ecf3aaf6d2d260eec1aa36ad6" }
+wheels = [
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/14/1b/a298b06749107c305e1fe0f814c6c74aea7b2f1e10989cb30f544a1b3253/python_dotenv-1.2.1-py3-none-any.whl", hash = "sha256:b81ee9561e9ca4004139c6cbba3a238c32b03e4894671e181b671e8cb8425d61" },
+]
+
+[[package]]
+name = "pytorch-finufft"
+version = "0.1.0"
+source = { registry = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/simple" }
+dependencies = [
+    { name = "finufft" },
+    { name = "numpy" },
+    { name = "scipy" },
+    { name = "torch" },
+]
+sdist = { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/d6/97/4a1c78711d8c03f46badb14ae311557bdafe788ee045cb7344cd8c1583d6/pytorch_finufft-0.1.0.tar.gz", hash = "sha256:3c358a8bd0d906d87a02230e95ccc5fc38d0239ed02704e6f55c92e031f4626b" }
+wheels = [
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/cc/49/42d0af3892e4a4a25ea0120df49465dfe8560cb8fe23a5b392683ee03f95/pytorch_finufft-0.1.0-py3-none-any.whl", hash = "sha256:5456d26a8fe2e266c665ee995af58819f77e3dd826abf5429f765bcbbac48e08" },
+]
+
+[[package]]
 name = "pytz"
 version = "2025.2"
 source = { registry = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/simple" }
@@ -1719,6 +1843,32 @@ wheels = [
 ]
 
 [[package]]
+name = "ruff"
+version = "0.14.10"
+source = { registry = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/simple" }
+sdist = { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/57/08/52232a877978dd8f9cf2aeddce3e611b40a63287dfca29b6b8da791f5e8d/ruff-0.14.10.tar.gz", hash = "sha256:9a2e830f075d1a42cd28420d7809ace390832a490ed0966fe373ba288e77aaf4" }
+wheels = [
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/60/01/933704d69f3f05ee16ef11406b78881733c186fe14b6a46b05cfcaf6d3b2/ruff-0.14.10-py3-none-linux_armv6l.whl", hash = "sha256:7a3ce585f2ade3e1f29ec1b92df13e3da262178df8c8bdf876f48fa0e8316c49" },
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/df/58/a0349197a7dfa603ffb7f5b0470391efa79ddc327c1e29c4851e85b09cc5/ruff-0.14.10-py3-none-macosx_10_12_x86_64.whl", hash = "sha256:674f9be9372907f7257c51f1d4fc902cb7cf014b9980152b802794317941f08f" },
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/7b/82/36be59f00a6082e38c23536df4e71cdbc6af8d7c707eade97fcad5c98235/ruff-0.14.10-py3-none-macosx_11_0_arm64.whl", hash = "sha256:d85713d522348837ef9df8efca33ccb8bd6fcfc86a2cde3ccb4bc9d28a18003d" },
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/a6/00/45c62a7f7e34da92a25804f813ebe05c88aa9e0c25e5cb5a7d23dd7450e3/ruff-0.14.10-py3-none-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:6987ebe0501ae4f4308d7d24e2d0fe3d7a98430f5adfd0f1fead050a740a3a77" },
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/40/31/a5906d60f0405f7e57045a70f2d57084a93ca7425f22e1d66904769d1628/ruff-0.14.10-py3-none-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:16a01dfb7b9e4eee556fbfd5392806b1b8550c9b4a9f6acd3dbe6812b193c70a" },
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/3e/60/61c0087df21894cf9d928dc04bcd4fb10e8b2e8dca7b1a276ba2155b2002/ruff-0.14.10-py3-none-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:7165d31a925b7a294465fa81be8c12a0e9b60fb02bf177e79067c867e71f8b1f" },
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/44/84/77d911bee3b92348b6e5dab5a0c898d87084ea03ac5dc708f46d88407def/ruff-0.14.10-py3-none-manylinux_2_17_ppc64.manylinux2014_ppc64.whl", hash = "sha256:c561695675b972effb0c0a45db233f2c816ff3da8dcfbe7dfc7eed625f218935" },
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/e9/36/480206eaefa24a7ec321582dda580443a8f0671fdbf6b1c80e9c3e93a16a/ruff-0.14.10-py3-none-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:4bb98fcbbc61725968893682fd4df8966a34611239c9fd07a1f6a07e7103d08e" },
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/5c/38/68e414156015ba80cef5473d57919d27dfb62ec804b96180bafdeaf0e090/ruff-0.14.10-py3-none-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:f24b47993a9d8cb858429e97bdf8544c78029f09b520af615c1d261bf827001d" },
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/b3/19/9e050c0dca8aba824d67cc0db69fb459c28d8cd3f6855b1405b3f29cc91d/ruff-0.14.10-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:59aabd2e2c4fd614d2862e7939c34a532c04f1084476d6833dddef4afab87e9f" },
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/51/eb/e8dd1dd6e05b9e695aa9dd420f4577debdd0f87a5ff2fedda33c09e9be8c/ruff-0.14.10-py3-none-manylinux_2_31_riscv64.whl", hash = "sha256:213db2b2e44be8625002dbea33bb9c60c66ea2c07c084a00d55732689d697a7f" },
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/6a/12/f3e3a505db7c19303b70af370d137795fcfec136d670d5de5391e295c134/ruff-0.14.10-py3-none-musllinux_1_2_aarch64.whl", hash = "sha256:b914c40ab64865a17a9a5b67911d14df72346a634527240039eb3bd650e5979d" },
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/08/64/8c3a47eaccfef8ac20e0484e68e0772013eb85802f8a9f7603ca751eb166/ruff-0.14.10-py3-none-musllinux_1_2_armv7l.whl", hash = "sha256:1484983559f026788e3a5c07c81ef7d1e97c1c78ed03041a18f75df104c45405" },
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/12/84/534a5506f4074e5cc0529e5cd96cfc01bb480e460c7edf5af70d2bcae55e/ruff-0.14.10-py3-none-musllinux_1_2_i686.whl", hash = "sha256:c70427132db492d25f982fffc8d6c7535cc2fd2c83fc8888f05caaa248521e60" },
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/0d/1e/14c916087d8598917dbad9b2921d340f7884824ad6e9c55de948a93b106d/ruff-0.14.10-py3-none-musllinux_1_2_x86_64.whl", hash = "sha256:5bcf45b681e9f1ee6445d317ce1fa9d6cba9a6049542d1c3d5b5958986be8830" },
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/f2/1c/d7b67ab43f30013b47c12b42d1acd354c195351a3f7a1d67f59e54227ede/ruff-0.14.10-py3-none-win32.whl", hash = "sha256:104c49fc7ab73f3f3a758039adea978869a918f31b73280db175b43a2d9b51d6" },
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/fb/9c/896c862e13886fae2af961bef3e6312db9ebc6adc2b156fe95e615dee8c1/ruff-0.14.10-py3-none-win_amd64.whl", hash = "sha256:466297bd73638c6bdf06485683e812db1c00c7ac96d4ddd0294a338c62fdc154" },
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/74/31/b0e29d572670dca3674eeee78e418f20bdf97fa8aa9ea71380885e175ca0/ruff-0.14.10-py3-none-win_arm64.whl", hash = "sha256:e51d046cf6dda98a4633b8a8a771451107413b0f07183b2bef03f075599e44e6" },
+]
+
+[[package]]
 name = "schedulefree"
 version = "1.4.1"
 source = { registry = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/simple" }
@@ -1861,6 +2011,51 @@ wheels = [
 ]
 
 [[package]]
+name = "tensordict"
+version = "0.9.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "cloudpickle" },
+    { name = "importlib-metadata" },
+    { name = "numpy" },
+    { name = "orjson" },
+    { name = "packaging" },
+    { name = "torch" },
+]
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/11/fd/d351b308ca36af6f4ce2b5f756f985ba899dc86c67201c949e832eae8216/tensordict-0.9.0-cp311-cp311-macosx_15_0_arm64.whl", hash = "sha256:4c1a9d74bb87d3a7f9ba6f88c836b7f69349613c3e6c85d37a69594dfbc79c2b", size = 733294, upload-time = "2025-07-09T16:17:59.956Z" },
+    { url = "https://files.pythonhosted.org/packages/86/ca/e00fadfdaf8f19a707d28a8230c0764285e5e28c204062a9d343d48642a6/tensordict-0.9.0-cp311-cp311-manylinux_2_28_aarch64.whl", hash = "sha256:4297ede6cfbeb9ea92fd88443c094c63fc84868d541499469c0527ef0547d5cd", size = 420166, upload-time = "2025-07-09T16:18:02.556Z" },
+    { url = "https://files.pythonhosted.org/packages/ae/e4/bef9c68accc9ffed79c63d8aa26d84e8c75f9a277bb529dd5301585ab504/tensordict-0.9.0-cp311-cp311-manylinux_2_28_x86_64.whl", hash = "sha256:9888c8fdde39bb7ec742e741917b0c18b38f1520b638a5e40c1e69dd4f4a3cd1", size = 423933, upload-time = "2025-07-09T16:18:04.017Z" },
+    { url = "https://files.pythonhosted.org/packages/1a/97/2710c22c5b85588fee623b1ac04bf26f9d2635e618e3a5c648fef3507980/tensordict-0.9.0-cp311-cp311-win_amd64.whl", hash = "sha256:69b8a9e08916be124efa70e229568f9877efdf0fcc6efa8f0e1128003c3cd6e9", size = 464719, upload-time = "2025-07-09T16:18:05.378Z" },
+]
+
+[[package]]
+name = "tensorly"
+version = "0.8.1"
+source = { registry = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/simple" }
+dependencies = [
+    { name = "numpy" },
+    { name = "scipy" },
+]
+sdist = { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/75/7f/813ac904fc85733a93a9703aea5fe320f0573855cf0eb092531c6b0a8a88/tensorly-0.8.1.tar.gz", hash = "sha256:cf78e4ffe612feca3510214002845c6831b267b1f2c1181154d41430310b237d" }
+wheels = [
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/71/6c/b07811af60b429d29ff1aab7a8d7b845f24e27462c7455c3df734007dd67/tensorly-0.8.1-py3-none-any.whl", hash = "sha256:08988dbc5e433c3f255d0e00855f99a613fe273d50a1627b7e82b03ff2a6da9a" },
+]
+
+[[package]]
+name = "tensorly-torch"
+version = "0.5.0"
+source = { registry = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/simple" }
+dependencies = [
+    { name = "numpy" },
+    { name = "scipy" },
+]
+sdist = { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/d6/24/afea0adc5c29ae40d28bc359eaf888a1605699fbba690e76ec67c51b055a/tensorly-torch-0.5.0.tar.gz", hash = "sha256:4c2f19f361113ca78f09b504a786075b0f51425468ae997a5f8018d4be6a4db5" }
+wheels = [
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/fb/35/2da451f342ee532bf66507c89ff3cdefc0dfbacff83a2f088811deb2df17/tensorly_torch-0.5.0-py3-none-any.whl", hash = "sha256:6a14cab43bb82892e58940fb75e5c55ec1a550d9063fb722469f93cba449940b" },
+]
+
+[[package]]
 name = "threadpoolctl"
 version = "3.5.0"
 source = { registry = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/simple" }
@@ -1923,6 +2118,29 @@ wheels = [
 ]
 
 [[package]]
+name = "torch-scatter"
+version = "2.1.3.dev1"
+source = { registry = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/simple" }
+resolution-markers = [
+    "sys_platform == 'darwin'",
+]
+wheels = [
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/torch_scatter/torch_scatter-2.1.3.dev1-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:10ca1d1ba45f41912d38ece07bf1b71fed911c6e85ad0788053940d681ce025b" },
+]
+
+[[package]]
+name = "torch-scatter"
+version = "2.1.3.dev1+pt27cu128"
+source = { registry = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/simple" }
+resolution-markers = [
+    "sys_platform != 'darwin' and sys_platform != 'win32'",
+    "sys_platform == 'win32'",
+]
+wheels = [
+    { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/torch_scatter/torch_scatter-2.1.3.dev1+pt27cu128-cp311-cp311-linux_x86_64.whl", hash = "sha256:c67c735c6879d04d5cf3ff82b5abe9e085394de231d15d6b00de354bb66fd09c" },
+]
+
+[[package]]
 name = "torchmetrics"
 version = "1.7.4"
 source = { registry = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/simple" }
@@ -1963,7 +2181,7 @@ name = "triton"
 version = "3.3.1"
 source = { registry = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/simple" }
 dependencies = [
-    { name = "setuptools" },
+    { name = "setuptools", marker = "sys_platform != 'darwin' and sys_platform != 'win32'" },
 ]
 wheels = [
     { url = "https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/packages/packages/21/2f/3e56ea7b58f80ff68899b1dbe810ff257c9d177d288c6b0f55bf2fe4eb50/triton-3.3.1-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:b31e3aa26f8cb3cc5bf4e187bf737cbacf17311e1112b781d4a059353dfd731b" },

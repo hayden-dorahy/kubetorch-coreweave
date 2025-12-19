@@ -3,6 +3,7 @@
 Uses service_template to set schedulerName and annotations for SUNK integration.
 Docs: https://docs.coreweave.com/docs/products/sunk/run_workloads/schedule-kubernetes-pods
 """
+
 import kubetorch as kt
 
 
@@ -10,6 +11,7 @@ def check_gpu():
     """Check if GPU is available."""
     try:
         import torch
+
         if torch.cuda.is_available():
             return {
                 "cuda_available": True,
@@ -24,7 +26,7 @@ def check_gpu():
 if __name__ == "__main__":
     # SUNK scheduler name (check with: kubectl get schedulers -n tenant-slurm)
     SUNK_SCHEDULER = "tenant-slurm-slurm-scheduler"
-    
+
     # Use service_template to inject schedulerName into pod spec
     service_template = {
         "spec": {
@@ -38,26 +40,20 @@ if __name__ == "__main__":
             }
         }
     }
-    
+
     # SUNK annotations (required for proper scheduling)
     sunk_annotations = {
         "sunk.coreweave.com/account": "root",
         "sunk.coreweave.com/comment": "Kubetorch GPU test via SUNK",
         "sunk.coreweave.com/exclusive": "user",  # Allows sharing with other K8s pods
     }
-    
+
     # Tolerations to allow scheduling on GPU nodes
-    gpu_tolerations = [
-        {
-            "key": "nvidia.com/gpu",
-            "operator": "Exists",
-            "effect": "NoSchedule"
-        }
-    ]
-    
+    gpu_tolerations = [{"key": "nvidia.com/gpu", "operator": "Exists", "effect": "NoSchedule"}]
+
     # Note: Nodes advertise both 'nvidia.com/gpu' and 'sunk.coreweave.com/accelerator'.
     # If 'nvidia.com/gpu' stays Pending, try requesting 'sunk.coreweave.com/accelerator' instead.
-    
+
     compute = kt.Compute(
         cpus="1",
         memory="4Gi",
@@ -70,13 +66,12 @@ if __name__ == "__main__":
         tolerations=gpu_tolerations,
         service_template=service_template,
     )
-    
+
     print("Requesting GPU via SUNK scheduler...")
     print(f"  Scheduler: {SUNK_SCHEDULER}")
-    print(f"  Namespace: tenant-slurm")
-    print(f"  GPU type: B200")
-    
+    print("  Namespace: tenant-slurm")
+    print("  GPU type: B200")
+
     remote_fn = kt.fn(check_gpu, name="gpu_sunk").to(compute)
     result = remote_fn()
     print(f"\nResult: {result}")
-

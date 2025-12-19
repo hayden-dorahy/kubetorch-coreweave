@@ -3,6 +3,7 @@
 Run this script multiple times - edit the MESSAGE below between runs
 and see changes reflected instantly without cold start.
 """
+
 # ============================================
 # EDIT THIS MESSAGE AND RE-RUN THE SCRIPT!
 # ============================================
@@ -15,12 +16,15 @@ def get_message():
 
 
 if __name__ == "__main__":
-    import kubetorch as kt
     import time
 
-    compute = kt.Compute(cpus="0.1", launch_timeout=60, inactivity_ttl="10m", labels={"demo": "hot-reload"})
+    import kubetorch as kt
+
+    compute = kt.Compute(
+        cpus="0.1", launch_timeout=60, inactivity_ttl="10m", labels={"demo": "hot-reload"}
+    )
     remote_fn = kt.fn(get_message, name="warmstart_hotreload").to(compute)
-    
+
     print("=" * 50)
     start = time.time()
     result = remote_fn()
@@ -30,4 +34,3 @@ if __name__ == "__main__":
     print("=" * 50)
     print("\nTry editing MESSAGE in this file and running again!")
     print("The change will be reflected without a cold start.")
-

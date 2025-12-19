@@ -3,6 +3,7 @@ import kubetorch as kt
 
 def hello_world():
     import platform
+
     return f"Hello from Kubetorch! Running on {platform.node()}"
 
 
@@ -16,4 +17,3 @@ if __name__ == "__main__":
     # Run remotely
     result = remote_fn()
     print(result)
-

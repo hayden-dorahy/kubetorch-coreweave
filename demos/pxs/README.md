@@ -5,14 +5,22 @@ private package installation from Artifactory and editable development workflows
 
 | Demo | Description |
 |------|-------------|
-| `pxs_artifactory.py` | Install pxs from Artifactory, run Opora MLP |
+| `pxs_artifactory.py` | Install pxs from Artifactory (uses uv store or .env.secrets) |
+| `pxs_secrets_install.py` | Dedicated example using .env.secrets for install |
 | `pxs_editable_rsync.py` | Rsync local pxs code + install deps separately |
 | `pxs_editable_install.py` | Full editable install via `uv pip install -e` |
 
 ## Prerequisites
 
-- Artifactory credentials stored in `~/.local/share/uv/credentials/credentials.toml`
-- Run `uv auth login` to set up credentials
+### Option 1: Env Vars (Recommended)
+Create a `.env.secrets` file in the repo root:
+```bash
+export ARTIFACTORY_USER="your.name"
+export ARTIFACTORY_TOKEN="your-token"
+```
+
+### Option 2: uv auth
+Run `uv auth login` to store credentials in `~/.local/share/uv/credentials/credentials.toml`.
 
 ## Running
 

@@ -1,9 +1,11 @@
 """Test SUNK scheduler with CPU only."""
+
 import kubetorch as kt
 
 
 def test_sunk():
     import socket
+
     return f"Running on {socket.gethostname()} via SUNK!"
 
 

@@ -1,22 +1,8 @@
 """Minimal pxs Opora test on CPU with Kubetorch."""
-import os
-import tomllib
-from pathlib import Path
 
 import kubetorch as kt
 
-
-def load_artifactory_creds():
-    """Load artifactory credentials from uv's credential store."""
-    creds_file = Path.home() / ".local/share/uv/credentials/credentials.toml"
-    with open(creds_file, "rb") as f:
-        data = tomllib.load(f)
-    
-    for cred in data.get("credential", []):
-        if "physicsx.jfrog.io" in cred.get("service", ""):
-            return cred["username"], cred["password"]
-    
-    raise ValueError("No PhysicsX artifactory credentials found in uv credentials")
+from demos.pxs.utils import load_artifactory_creds
 
 
 def run_opora_mlp():
@@ -70,23 +56,35 @@ if __name__ == "__main__":
 
     # Load artifactory credentials from uv
     username, password = load_artifactory_creds()
+    artifactory_secret = kt.Secret(
+        name="artifactory-index-url",
+        env_vars={
+            "UV_EXTRA_INDEX_URL": f"https://{username}:{password}@physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/simple"
+        },
+    )
 
     # Create image: use Debian base to avoid pydantic conflicts, install everything fresh
     image = (
         kt.images.Debian()
-        .set_env_vars({
-            "UV_EXTRA_INDEX_URL": f"https://{username}:{password}@physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/simple",
-            "UV_PRERELEASE": "allow",
-            "UV_INDEX_STRATEGY": "unsafe-best-match",
-        })
-        .run_bash("pip install uv")
-        .run_bash("uv pip install --system 'physicsx.pxs[opora]==0.29.0-dev.11'")
+        .set_env_vars(
+            {
+                "UV_PRERELEASE": "allow",
+                "UV_INDEX_STRATEGY": "unsafe-best-match",
+            }
+        )
+        .pip_install(["physicsx.pxs[opora]==0.29.0-dev.11"])
     )
 
-    compute = kt.Compute(cpus="0.5", memory="4Gi", image=image, launch_timeout=300, inactivity_ttl="10m")  # longer for pxs install
-    
+    compute = kt.Compute(
+        cpus="0.5",
+        memory="4Gi",
+        image=image,
+        launch_timeout=300,
+        inactivity_ttl="10m",
+        secrets=[artifactory_secret],
+    )  # longer for pxs install
+
     # Run the Opora MLP test (separate pod - different image from editable demos)
     remote_fn = kt.fn(run_opora_mlp, name="pxs_artifactory").to(compute)
     result = remote_fn()
     print(result)
-
