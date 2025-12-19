@@ -37,6 +37,8 @@ if __name__ == "__main__":
     # Deploy to tenant-slurm namespace (where PVC lives)
     compute = kt.Compute(
         cpus="0.1",
+        launch_timeout=120,  # Longer for PVC mounting
+        inactivity_ttl="10m",
         namespace="tenant-slurm",
         volumes=[vol]
     )

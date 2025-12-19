@@ -92,7 +92,7 @@ if __name__ == "__main__":
         .rsync(str(PXS_PATH / "pxs"), dest="/pxs_sync/pxs", contents=True)
     )
 
-    compute = kt.Compute(cpus="0.5", memory="4Gi", image=image)
+    compute = kt.Compute(cpus="0.5", memory="4Gi", image=image, launch_timeout=300, inactivity_ttl="10m")
     
     remote_fn = kt.fn(run_opora_mlp, name="pxs_rsync").to(compute)  # separate - different image setup
     result = remote_fn()

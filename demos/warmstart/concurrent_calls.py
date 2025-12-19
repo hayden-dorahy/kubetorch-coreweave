@@ -18,8 +18,8 @@ if __name__ == "__main__":
     import concurrent.futures
     
     print("Setting up Kubetorch...")
-    compute = kt.Compute(cpus="0.5", labels={"demo": "concurrent"})
-    remote_fn = kt.fn(slow_computation, name="warmstart").to(compute)
+    compute = kt.Compute(cpus="0.5", launch_timeout=60, inactivity_ttl="10m", labels={"demo": "concurrent"})
+    remote_fn = kt.fn(slow_computation, name="warmstart_concurrent").to(compute)
     
     # Warm up
     print("Warming up pod...")

@@ -18,8 +18,8 @@ if __name__ == "__main__":
     import kubetorch as kt
     import time
 
-    compute = kt.Compute(cpus="0.1", labels={"demo": "hot-reload"})
-    remote_fn = kt.fn(get_message, name="warmstart").to(compute)
+    compute = kt.Compute(cpus="0.1", launch_timeout=60, inactivity_ttl="10m", labels={"demo": "hot-reload"})
+    remote_fn = kt.fn(get_message, name="warmstart_hotreload").to(compute)
     
     print("=" * 50)
     start = time.time()

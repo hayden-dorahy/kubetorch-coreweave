@@ -13,7 +13,8 @@ if __name__ == "__main__":
         cpus="0.5",
         memory="1Gi",
         namespace="tenant-slurm",
-        launch_timeout=30,  # 30 seconds max
+        launch_timeout=30,
+        inactivity_ttl="10m",
         service_template={
             "spec": {
                 "template": {

@@ -5,6 +5,12 @@ A collection of demos showcasing [Kubetorch](https://www.run.house/kubetorch) fe
 ## Quick Start
 
 ```bash
+# Install uv
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Authenticate to Artifactory (so we can install PXS). Enter your Artifactory user and token as the username and password:
+uv auth login https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/simple
+
 # Activate environment
 source .venv/bin/activate
 
@@ -109,6 +115,7 @@ Script runs → Pod created → Script ends → Pod stays running
                                               ↓
                             Next run → Reuses warm pod (fast!)
 ```
+Pods auto-terminate after 10 minutes of inactivity (configured via `inactivity_ttl="10m"`).
 
 ### Cleanup
 Pods run indefinitely unless deleted:

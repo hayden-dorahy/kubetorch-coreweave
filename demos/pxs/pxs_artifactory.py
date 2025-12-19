@@ -83,7 +83,7 @@ if __name__ == "__main__":
         .run_bash("uv pip install --system 'physicsx.pxs[opora]==0.29.0-dev.11'")
     )
 
-    compute = kt.Compute(cpus="0.5", memory="4Gi", image=image)
+    compute = kt.Compute(cpus="0.5", memory="4Gi", image=image, launch_timeout=300, inactivity_ttl="10m")  # longer for pxs install
     
     # Run the Opora MLP test (separate pod - different image from editable demos)
     remote_fn = kt.fn(run_opora_mlp, name="pxs_artifactory").to(compute)

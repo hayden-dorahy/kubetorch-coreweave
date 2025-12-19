@@ -89,7 +89,7 @@ if __name__ == "__main__":
         .run_bash('uv pip install --system -e "/pxs_repo[opora]"')
     )
 
-    compute = kt.Compute(cpus="0.5", memory="4Gi", image=image)
+    compute = kt.Compute(cpus="0.5", memory="4Gi", image=image, launch_timeout=300, inactivity_ttl="10m")
     
     remote_fn = kt.fn(run_opora_mlp, name="pxs_install").to(compute)  # separate - different image setup
     result = remote_fn()

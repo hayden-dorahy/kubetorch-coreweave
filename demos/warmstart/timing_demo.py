@@ -9,8 +9,8 @@ def get_time():
 
 
 if __name__ == "__main__":
-    compute = kt.Compute(cpus="0.1")
-    remote_fn = kt.fn(get_time, name="warmstart").to(compute)
+    compute = kt.Compute(cpus="0.1", launch_timeout=60, inactivity_ttl="10m")
+    remote_fn = kt.fn(get_time, name="warmstart_timing").to(compute)
 
     # First call - cold start (deploys pod)
     print("First call (cold start)...")
