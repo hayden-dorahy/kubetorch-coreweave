@@ -33,7 +33,8 @@ kt teardown --all    # Delete all YOUR services
 │   ├── basics/              # Core Kubetorch functionality
 │   ├── warmstart/           # Warm start features
 │   ├── pxs/                 # PhysicsX library demos
-│   └── gpu/                 # GPU demos (SUNK integration)
+│   ├── sunk/                # GPU demos (SUNK integration)
+│   └── advanced/            # Secrets, etc.
 │
 ├── kubetorch_agents/        # Kubetorch reference documentation
 │
@@ -76,8 +77,14 @@ kt teardown --all    # Delete all YOUR services
 ### GPU (Work in Progress)
 | Demo | Description | CPU | GPU |
 |------|-------------|:---:|:---:|
-| `gpu_sunk_scheduler.py` | Kubetorch + SUNK | - | 🚧 |
-| `gpu_sunk_raw.yaml` | Raw K8s GPU test | - | 🚧 |
+| `gpu_sunk_kubetorch.py` | Kubetorch + SUNK | - | 🚧 |
+| `test_sunk_cpu.py` | SUNK CPU Test | ✅ | - |
+
+### Advanced
+| Demo | Description | CPU | GPU |
+|------|-------------|:---:|:---:|
+| `secrets_demo.py` | Using Secrets | ✅ | - |
+| `resource_requests.py` | Custom Resources | ✅ | - |
 
 ## Cluster Info
 

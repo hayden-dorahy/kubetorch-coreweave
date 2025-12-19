@@ -12,6 +12,7 @@ See [main README](../README.md) for quick start and setup instructions.
 | [`warmstart/`](warmstart/) | Warm start features (hot reload, state, debugging) |
 | [`pxs/`](pxs/) | PhysicsX library integration |
 | [`gpu/`](gpu/) | GPU demos (WIP - requires SUNK scheduler) |
+| [`advanced/`](advanced/) | Secrets, etc. |
 
 ## Running Demos
 
