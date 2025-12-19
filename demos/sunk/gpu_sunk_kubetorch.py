@@ -31,7 +31,9 @@ if __name__ == "__main__":
             "template": {
                 "spec": {
                     "schedulerName": SUNK_SCHEDULER,
-                    "terminationGracePeriodSeconds": 5,  # SUNK requires < KillWait - 5s
+                    # SUNK requires terminationGracePeriodSeconds < Slurm KillWait - 5s
+                    # If missing, pod stays Pending with "SchedulingFailed"
+                    "terminationGracePeriodSeconds": 5,
                 }
             }
         }
@@ -52,6 +54,9 @@ if __name__ == "__main__":
             "effect": "NoSchedule"
         }
     ]
+    
+    # Note: Nodes advertise both 'nvidia.com/gpu' and 'sunk.coreweave.com/accelerator'.
+    # If 'nvidia.com/gpu' stays Pending, try requesting 'sunk.coreweave.com/accelerator' instead.
     
     compute = kt.Compute(
         cpus="1",

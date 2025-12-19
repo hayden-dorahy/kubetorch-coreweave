@@ -53,10 +53,10 @@ compute = kt.Compute(
 
 ```bash
 # Test SUNK with CPU first (verifies setup)
-python demos/gpu/test_sunk_cpu.py
+python demos/sunk/test_sunk_cpu.py
 
 # GPU via SUNK (when GPUs are available)
-python demos/gpu/gpu_sunk_kubetorch.py
+python demos/sunk/gpu_sunk_kubetorch.py
 ```
 
 ## If GPUs Are Busy
