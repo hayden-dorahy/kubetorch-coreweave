@@ -217,10 +217,27 @@ annotations:
 
 Kubetorch keeps pods running ("warm start") for fast iteration.
 
-> ⚠️ **Production TODO**: Set `inactivity_ttl` to auto-terminate idle pods:
-> ```python
-> compute = kt.Compute(cpus="1", inactivity_ttl=1800)  # 30 min timeout
-> ```
+### Auto-Termination Options
+
+**Option 1: Knative Autoscaling (recommended)**
+
+With Knative installed, use `.autoscale()` for true scale-to-zero:
+```python
+remote_fn = kt.fn(my_func).to(compute).autoscale(
+    min_replicas=0,      # Scale to zero when idle
+    max_replicas=1,
+    target_concurrency=1
+)
+```
+Pods terminate after ~30s idle and cold-start on next request.
+
+**Option 2: Manual Teardown**
+
+For development, manually clean up:
+```bash
+kt teardown <service-name>   # Delete specific service
+kt teardown -ya              # Delete all your services
+```
 
 ### Hot-Reload (automatic)
 

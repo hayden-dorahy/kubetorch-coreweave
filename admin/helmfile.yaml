@@ -3,10 +3,19 @@
 #   brew install helmfile
 #   export KUBECONFIG=~/.kube/coreweave-usw9b
 #   helmfile sync
+#
+# Docs: https://www.run.house/kubetorch/kubernetes-install
 
-repositories: []  # Using OCI registry directly
+repositories:
+  - name: knative-operator
+    url: https://knative.github.io/operator
+  - name: kuberay
+    url: https://ray-project.github.io/kuberay-helm/
 
 releases:
+  # ─────────────────────────────────────────────────────────────
+  # Kubetorch Core
+  # ─────────────────────────────────────────────────────────────
   - name: kubetorch
     namespace: kubetorch
     createNamespace: true
@@ -22,4 +31,24 @@ releases:
             - "default"
             - "kubetorch"
             - "tenant-slurm"
+
+  # ─────────────────────────────────────────────────────────────
+  # Knative Operator (for autoscaling & scale-to-zero)
+  # ─────────────────────────────────────────────────────────────
+  - name: knative-operator
+    namespace: knative-operator
+    createNamespace: true
+    chart: knative-operator/knative-operator
+    # Use version < 1.18.0 if K8s < 1.31.0
+    version: 1.17.2
+
+  # ─────────────────────────────────────────────────────────────
+  # KubeRay Operator (for Ray distributed workloads)
+  # Docs use default ns, but dedicated ns is cleaner for operators
+  # ─────────────────────────────────────────────────────────────
+  - name: kuberay-operator
+    namespace: kuberay
+    createNamespace: true
+    chart: kuberay/kuberay-operator
+    version: 1.4.0
 
