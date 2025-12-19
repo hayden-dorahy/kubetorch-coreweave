@@ -28,29 +28,14 @@ kt teardown --all    # Delete all YOUR services
 
 ## Repository Structure
 
-```
+```console
 ├── demos/                    # Demo scripts
 │   ├── basics/              # Core Kubetorch functionality
-│   │   ├── hello_world.py   # Minimal example
-│   │   ├── pvc_access.py    # Shared storage access
-│   │   └── user_labels.py   # Workload identification
-│   │
 │   ├── warmstart/           # Warm start features
-│   │   ├── timing_demo.py   # Cold vs warm timing
-│   │   ├── hot_reload.py    # Code changes without restart
-│   │   ├── state_persistence.py  # Persistent globals
-│   │   ├── breakpoint_debug.py   # Remote debugging
-│   │   ├── ssh_into_pod.py       # Interactive SSH
-│   │   └── concurrent_calls.py   # Parallel requests
-│   │
 │   ├── pxs/                 # PhysicsX library demos
-│   │   ├── pxs_artifactory.py    # Install from Artifactory
-│   │   ├── pxs_editable_rsync.py # Editable via rsync
-│   │   └── pxs_editable_install.py  # Full editable install
-│   │
-│   └── gpu/                 # GPU demos (WIP)
-│       ├── gpu_sunk_scheduler.py # Kubetorch + SUNK
-│       └── gpu_sunk_raw.yaml     # Raw K8s manifest
+│   └── gpu/                 # GPU demos (SUNK integration)
+│
+├── kubetorch_agents/        # Kubetorch reference documentation
 │
 ├── admin/                   # Cluster administration
 │   ├── docs/               # Setup documentation
@@ -129,4 +114,5 @@ kt teardown --prefix <pfx>   # Delete all matching prefix
 
 - [Kubetorch Setup Guide](admin/docs/kubetorch_setup.md) - Installation & configuration
 - [CoreWeave Connection](admin/docs/coreweave_k8s.md) - Cluster access & SSH
+- [Kubetorch Reference Agents](kubetorch_agents/README.md) - Comprehensive Kubetorch documentation & examples (maybe more comprehensive than their docs, written by Gemini 3 Pro based on Kubetorch website + python package code)
 - [Kubetorch Official Docs](https://www.run.house/kubetorch)
