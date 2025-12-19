@@ -4,11 +4,25 @@ A collection of demos showcasing [Kubetorch](https://www.run.house/kubetorch) fe
 
 ## Quick Start
 
+### Prerequisites
+- Access to CoreWeave K8s cluster (kubeconfig stored at `~/.kube/config`)
+- [uv](https://docs.astral.sh/uv/) installed
+- **rsync 3.2+** (macOS ships with 2.x which doesn't work with kubetorch)
+
 ```bash
-# Install uv
+# Install uv (if not already installed)
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
+# macOS: Install newer rsync (required for kubetorch code syncing)
+brew install rsync
+# Add to PATH in your shell profile (~/.zshrc):
+export PATH="/opt/homebrew/bin:$PATH"
+
+# Ensure you have your kubeconfig downloaded and set (default: ~/.kube/config)
+# export KUBECONFIG=~/.kube/coreweave-config
+
 # Authenticate to Artifactory (so we can install PXS). Enter your Artifactory user and token as the username and password:
+# Or make a .env.secrets file exporting ARTIFACTORY_USER and ARTIFACTORY_TOKEN
 uv auth login https://physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/simple
 
 # Activate environment
@@ -71,8 +85,7 @@ kt teardown --all    # Delete all YOUR services
 | Demo | Description | CPU | GPU |
 |------|-------------|:---:|:---:|
 | `pxs_artifactory.py` | Install pxs from Artifactory | ✅ | - |
-| `pxs_editable_rsync.py` | Dev mode via rsync | ✅ | - |
-| `pxs_editable_install.py` | Full editable install | ✅ | - |
+| `pxs_local_editable.py` | Install from local pxs repo | ✅ | - |
 
 ### GPU (Work in Progress)
 | Demo | Description | CPU | GPU |

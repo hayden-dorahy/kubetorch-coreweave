@@ -1,14 +1,12 @@
 # PXS (PhysicsX) Demos
 
 Demonstrations of running the `pxs` library on Kubetorch, including
-private package installation from Artifactory and editable development workflows.
+private package installation from Artifactory and local development workflows.
 
 | Demo | Description |
 |------|-------------|
 | `pxs_artifactory.py` | Install pxs from Artifactory (uses uv store or .env.secrets) |
-| `pxs_secrets_install.py` | Dedicated example using .env.secrets for install |
-| `pxs_editable_rsync.py` | Rsync local pxs code + install deps separately |
-| `pxs_editable_install.py` | Full editable install via `uv pip install -e` |
+| `pxs_local_editable.py` | Rsync local pxs repo + pip install from local path |
 
 ## Prerequisites
 
@@ -28,9 +26,8 @@ Run `uv auth login` to store credentials in `~/.local/share/uv/credentials/crede
 # Standard pxs from Artifactory
 python demos/pxs/pxs_artifactory.py
 
-# Editable mode (uses local ~/gitrepos/product/libraries/pxs)
-python demos/pxs/pxs_editable_rsync.py
-python demos/pxs/pxs_editable_install.py
+# Local install (uses local ~/gitrepos/product/libraries/pxs)
+python demos/pxs/pxs_local_editable.py
 ```
 
 ## Approaches Compared
@@ -39,15 +36,7 @@ python demos/pxs/pxs_editable_install.py
 - Installs `physicsx.pxs[opora]` from private registry
 - Best for: Using released versions
 
-### 2. Rsync + Deps (`pxs_editable_rsync.py`)
-- Installs deps from Artifactory
-- Rsyncs local pxs source code
-- Uses `sys.path.insert()` to prioritize local code
-- Best for: Quick iteration on pxs code
-
-### 3. Editable Install (`pxs_editable_install.py`)
-- Rsyncs full pxs repo
-- Runs `uv pip install -e` for proper editable install
-- Still needs `sys.path.insert()` (Kubetorch server already running)
-- Best for: Full dev workflow with dependency resolution
-
+### 2. Local Install (`pxs_local_editable.py`)
+- Rsyncs full pxs repo with `contents=True`
+- Uses `pip_install()` from local path
+- Best for: Testing local pxs changes
