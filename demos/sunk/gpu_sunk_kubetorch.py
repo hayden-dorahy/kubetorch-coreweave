@@ -54,16 +54,21 @@ if __name__ == "__main__":
     # Note: Nodes advertise both 'nvidia.com/gpu' and 'sunk.coreweave.com/accelerator'.
     # If 'nvidia.com/gpu' stays Pending, try requesting 'sunk.coreweave.com/accelerator' instead.
 
+    # Use NVIDIA PyTorch image with CUDA support
+    image = kt.Image().from_docker("nvcr.io/nvidia/pytorch:24.08-py3")
+
     compute = kt.Compute(
         cpus="1",
-        memory="4Gi",
+        memory="8Gi",
         gpus="1",
-        gpu_type="B200",  # Specify GPU type
+        # CoreWeave uses gpu.nvidia.com/class label, not nvidia.com/gpu.product
+        node_selector={"gpu.nvidia.com/class": "B200"},
         namespace="tenant-slurm",  # SUNK namespace
-        launch_timeout=60,  # Shorter timeout for testing
+        launch_timeout=180,  # Longer timeout for Slurm scheduling
         annotations=sunk_annotations,
         tolerations=gpu_tolerations,
         service_template=service_template,
+        image=image,
     )
 
     print("Requesting GPU via SUNK scheduler...")
