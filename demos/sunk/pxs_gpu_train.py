@@ -1,4 +1,4 @@
-"""Run a PXS Opora model on GPU using SUNK scheduler.
+"""Train a PXS Opora model on GPU using SUNK scheduler.
 
 Uses pre-built image with:
 - CUDA 13.0 (B200 support)
@@ -11,7 +11,9 @@ import kubetorch as kt
 
 
 def run_opora_gpu():
-    """Run a simple Opora MLP model on GPU (same pattern as pxs_artifactory.py)."""
+    """Train and run a simple Opora MLP model on GPU."""
+    import time
+
     import numpy as np
     import torch
     from pxs.models.opora.pytorch.base import OporaPyTorch
@@ -47,22 +49,39 @@ def run_opora_gpu():
         },
     }
 
-    # Create model on GPU (same as pxs_artifactory.py but with device="cuda")
+    # Create model on GPU
     model = OporaPyTorch(OporaPyTorchConfig(**config), device="cuda")
-    model.is_trained = True  # Skip training check for inference
 
-    # Dummy data: 100 points with 3D coordinates (numpy, like pxs_artifactory.py)
-    n_points = 100
-    sample = {
+    # Generate dummy training data: list of samples (PXS format)
+    # Each sample is a dict with feature and target arrays
+    n_samples = 100
+    n_points = 50
+    train_data = [
+        {
+            "points": np.random.normal(size=(n_points, 3)).astype(np.float32),
+            "target": np.random.normal(size=(n_points, 1)).astype(np.float32),
+        }
+        for _ in range(n_samples)
+    ]
+
+    # Train the model (PXS API: model.train(data_list))
+    print(f"Training on {n_samples} samples...")
+    start_time = time.time()
+    model.train(train_data)
+    train_duration = time.time() - start_time
+    print(f"Training completed in {train_duration:.2f}s")
+
+    # Run inference on a test sample
+    test_sample = {
         "points": np.random.normal(size=(n_points, 3)).astype(np.float32),
         "target": np.random.normal(size=(n_points, 1)).astype(np.float32),
     }
-
-    # Run forward pass (same API as pxs_artifactory.py)
-    output = model.predict_one(data=sample)
+    output = model.predict_one(data=test_sample)
 
     return {
         "device": device_name,
+        "n_train_samples": n_samples,
+        "train_duration_s": round(train_duration, 2),
         "output_shape": str(output["target"].shape),
         "first_3_values": str(output["target"][:3].flatten()),
         "success": True,
