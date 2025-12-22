@@ -1,0 +1,32 @@
+# syntax=docker/dockerfile:1
+# PXS GPU training image with CUDA 13.0 (B200 support), Python 3.11, PyTorch
+FROM ghcr.io/coreweave/nccl-tests:13.0.1-devel-ubuntu22.04-nccl2.28.7-1-6b47463
+
+# Install uv, rsync, and other dependencies
+RUN apt-get update && apt-get install -y curl rsync && rm -rf /var/lib/apt/lists/* && \
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+ENV PATH="/root/.local/bin:$PATH"
+
+# Install Python 3.11 via uv
+RUN uv python install 3.11
+
+# Make uv's Python 3.11 the default BEFORE installing packages
+RUN ln -sf $(uv python find 3.11) /usr/local/bin/python3 && \
+    ln -sf $(uv python find 3.11) /usr/local/bin/python
+
+# Install PXS using BuildKit secret mount (credentials NOT stored in image)
+RUN --mount=type=secret,id=artifactory_creds \
+    export CREDS=$(cat /run/secrets/artifactory_creds) && \
+    uv pip install --python 3.11 --system --break-system-packages \
+    --extra-index-url "https://${CREDS}@physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/simple" \
+    --prerelease allow \
+    --index-strategy unsafe-best-match \
+    "physicsx.pxs[opora,cuda-12]"
+
+# Install kubetorch server with all server dependencies
+RUN uv pip install --python 3.11 --system --break-system-packages "kubetorch[server]"
+
+# Verify installations
+RUN python3 -c "import torch; print(f'PyTorch: {torch.__version__}, CUDA: {torch.version.cuda}')"
+RUN python3 -c "import pxs; print('PXS installed successfully')"
+RUN python3 -c "import kubetorch; print('kubetorch installed successfully')"
