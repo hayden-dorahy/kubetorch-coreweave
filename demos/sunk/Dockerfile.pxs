@@ -14,17 +14,25 @@ RUN uv python install 3.11
 RUN ln -sf $(uv python find 3.11) /usr/local/bin/python3 && \
     ln -sf $(uv python find 3.11) /usr/local/bin/python
 
+# Install PyTorch with CUDA 12.8 (B200 support)
+RUN uv pip install --python 3.11 --system --break-system-packages \
+    --index-url https://download.pytorch.org/whl/cu128 \
+    torch
+
 # Install PXS using BuildKit secret mount (credentials NOT stored in image)
+# Use --index-url for cu128 to ensure torch stays on cu128, not reinstalled from PyPI
 RUN --mount=type=secret,id=artifactory_creds \
     export CREDS=$(cat /run/secrets/artifactory_creds) && \
     uv pip install --python 3.11 --system --break-system-packages \
+    --index-url https://download.pytorch.org/whl/cu128 \
+    --extra-index-url https://pypi.org/simple \
     --extra-index-url "https://${CREDS}@physicsx.jfrog.io/artifactory/api/pypi/px-pypi-release/simple" \
     --prerelease allow \
     --index-strategy unsafe-best-match \
     "physicsx.pxs[opora,cuda-12]"
 
-# Install kubetorch server with all server dependencies
-RUN uv pip install --python 3.11 --system --break-system-packages "kubetorch[server]"
+# Install kubetorch server with all server dependencies + pip (kubetorch needs pip command)
+RUN uv pip install --python 3.11 --system --break-system-packages "kubetorch[server]" pip
 
 # Verify installations
 RUN python3 -c "import torch; print(f'PyTorch: {torch.__version__}, CUDA: {torch.version.cuda}')"
